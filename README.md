@@ -1,2 +1,2 @@
 # Mail
-A Simple Go Email API
+A Simple Email API Written in Go
