@@ -33,7 +33,10 @@ func main() {
 	}
 
 	// Prepare and send email.
-	email := &mail.Email{Credentials: emailCreds, Data: emailData}
+	email := &mail.Email{
+		Credentials: emailCreds,
+		Data: emailData
+	}
 	email.Send()
 }
 
