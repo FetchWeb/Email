@@ -32,8 +32,8 @@ type EmailData struct {
 	Attachments     map[string]*EmailAttachment `json:"attachments"`
 }
 
-// AddAttachment adds a new attachment to the EmailData.
-func (ed *EmailData) AddAttachment(file string, inline bool) error {
+// AddAttachmentFromFile adds an attachment from a directory to the EmailData.
+func (ed *EmailData) AddAttachmentFromFile(file string, inline bool) error {
 	// Read the file.
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
@@ -53,11 +53,11 @@ func (ed *EmailData) AddAttachment(file string, inline bool) error {
 	return nil
 }
 
-// AttachBuffer attaches a binary attachment to the EmailData.
-func (ed *EmailData) AttachBuffer(filename string, buf []byte, inline bool) error {
+// AddAttachmentFromBuffer adds an attachment already in a byte array to the EmailData.
+func (ed *EmailData) AddAttachmentFromBuffer(filename string, buffer []byte, inline bool) error {
 	ed.Attachments[filename] = &EmailAttachment{
 		Filename: filename,
-		Data:     buf,
+		Data:     buffer,
 		Inline:   inline,
 	}
 	return nil

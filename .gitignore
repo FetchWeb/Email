@@ -14,3 +14,8 @@
 # VS Code IDE files and folders
 .vscode
 debug
+debug.test
+
+# Test data
+TestEmailCredentials.json
+TestEmailData.json
