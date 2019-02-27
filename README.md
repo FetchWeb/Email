@@ -1,4 +1,7 @@
-# FetchWeb Mail - A Simple SMTP Email API Written in Go
+# FetchWeb Mail
+
+## Introduction
+FetchWeb Mail is a Simple SMTP Email API Written in Go with no dependencies.
 
 ## Setup Example
 ```
