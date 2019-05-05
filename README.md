@@ -11,20 +11,20 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	mail "github.com/FetchWeb/Mail"
+	email "github.com/FetchWeb/Mail"
 )
 
 func main() {
 	// Initailise credentials & data objects.
-	emailCreds := &mail.EmailCredentials{
+	emailCreds := &email.Credentials{
 		Address: "<Sending email address>",
 		Hostname: "<Hostname of SMTP Server>",
 		Name: "<Name appearing on email>",
 		Port: "<Port email being sent on>",
 		Password "<Password to email account>"
 	}
-	emailData := &mail.EmailData{
-		Attachments: make(map[string]*mail.EmailAttachment)
+	emailData := &email.Data{
+		Attachments: make(map[string]*email.Attachment)
 	}
 
 	// Add email body.
@@ -36,7 +36,7 @@ func main() {
 	}
 
 	// Prepare and send email.
-	email := &mail.Email{
+	email := &email.Email{
 		Credentials: emailCreds,
 		Data: emailData
 	}
