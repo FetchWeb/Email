@@ -1,0 +1,17 @@
+{
+	"from": {
+		"name": "FetchWeb Mail",
+		"address": "fetchweb.test@gmail.com"
+	},
+	"to": [
+		"taliesinwrmillhouse@gmail.com"
+	],
+	"cc": [],
+	"bcc": [],
+	"reply_to": "fetchweb.test@gmail.com",
+	"subject": "FetchWeb Mail Test",
+	"body": "FetchWeb Mail Text",
+	"body_content_type": "text/plain",
+	"headers": [],
+	"attachments": {}
+}
