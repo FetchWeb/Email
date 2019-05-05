@@ -1,7 +1,12 @@
 # FetchWeb Mail
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Go Report Card](https://goreportcard.com/badge/github.com/FetchWeb/Email)](https://goreportcard.com/report/github.com/FetchWeb/Email)
+[![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/FetchWeb/Email)
+[![GitHub release](https://img.shields.io/github/release/FetchWeb/Email.svg)](https://github.com/FetchWeb/Email/releases )
+
 ## Introduction
-FetchWeb Mail is a Simple SMTP Email API written in Go with no dependencies outside of the standard library.
+FetchWeb Email is a Simple SMTP Email API written in Go with no dependencies outside of the standard library.
 
 ## Setup Example
 ```go
@@ -11,19 +16,19 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	email "github.com/FetchWeb/Mail"
+	email "github.com/FetchWeb/Email"
 )
 
 func main() {
 	// Initailise credentials & data objects.
-	emailCreds := &email.Credentials{
+	creds := &email.Credentials{
 		Address: "<Sending email address>",
 		Hostname: "<Hostname of SMTP Server>",
 		Name: "<Name appearing on email>",
 		Port: "<Port email being sent on>",
 		Password "<Password to email account>"
 	}
-	emailData := &email.Data{
+	data := &email.Data{
 		Attachments: make(map[string]*email.Attachment)
 	}
 
@@ -35,11 +40,9 @@ func main() {
 		panic(err)
 	}
 
-	// Prepare and send email.
-	email := &email.Email{
-		Credentials: emailCreds,
-		Data: emailData
+	// Send email.
+	if err := email.Send(creds, data); err != nil {
+		panic(err)
 	}
-	email.Send()
 }
 ```
