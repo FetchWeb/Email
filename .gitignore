@@ -16,6 +16,10 @@
 debug
 debug.test
 
+# Go Modules.
+go.mod
+go.sum
+
 # Test data
 TestEmailCredentials.json
 TestEmailData.json
