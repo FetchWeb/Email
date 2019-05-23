@@ -6,7 +6,7 @@
 [![GitHub release](https://img.shields.io/github/release/FetchWeb/Email.svg)](https://github.com/FetchWeb/Email/releases )
 
 ## Introduction
-FetchWeb Email is a Simple SMTP Email API written in Go with no dependencies outside of the standard library.
+FetchWeb Email is a simple SMTP Email API written in Go with no dependencies outside of the Go standard library.
 
 ## Setup Example
 ```go
