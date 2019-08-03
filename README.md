@@ -33,10 +33,10 @@ func main() {
 	}
 
 	// Add email body.
-	emailData.Body = "Hello world from FetchWeb Mail!"
+	data.Body = "Hello world from FetchWeb Mail!"
 
 	// Add attachment from file.
-	if err := emailData.AddAttachmentFromFile("<Attachment directory>", false); err != nil {
+	if err := data.AddAttachmentFromFile("<Attachment directory>", false); err != nil {
 		panic(err)
 	}
 
