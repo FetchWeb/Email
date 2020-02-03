@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	email "github.com/FetchWeb/Mail"
+	email "github.com/FetchWeb/Email"
 )
 
 // TestEmail sends test emails based on the JSON files provided.
