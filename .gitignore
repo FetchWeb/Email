@@ -12,5 +12,5 @@
 *.out
 
 # Test data
-TestEmailCredentials.json
-TestEmailData.json
+TestCredentials.json
+TestData.json
