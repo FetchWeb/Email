@@ -20,16 +20,16 @@ const (
 
 // Data represents a smtp email.
 type Data struct {
-	From            mail.Address           `json:"from"`
-	To              []string               `json:"to"`
-	CC              []string               `json:"cc"`
-	BCC             []string               `json:"bcc"`
-	ReplyTo         string                 `json:"reply_to"`
-	Subject         string                 `json:"subject"`
-	Body            string                 `json:"body"`
-	BodyContentType string                 `json:"body_content_type"`
-	Headers         []Header               `json:"headers"`
-	Attachments     map[string]*Attachment `json:"attachments"`
+	From            mail.Address  `json:"from"`
+	To              []string      `json:"to"`
+	CC              []string      `json:"cc"`
+	BCC             []string      `json:"bcc"`
+	ReplyTo         string        `json:"reply_to"`
+	Subject         string        `json:"subject"`
+	Body            string        `json:"body"`
+	BodyContentType string        `json:"body_content_type"`
+	Headers         []*Header     `json:"headers"`
+	Attachments     []*Attachment `json:"attachments"`
 }
 
 // AddAttachmentFromFile adds an attachment from a directory to the Data.
@@ -44,28 +44,29 @@ func (d *Data) AddAttachmentFromFile(file string, inline bool) error {
 	_, filename := filepath.Split(file)
 
 	// Add file to attachments.
-	d.Attachments[filename] = &Attachment{
+	attachment := &Attachment{
 		Filename: filename,
 		Data:     data,
 		Inline:   inline,
 	}
+	d.Attachments = append(d.Attachments, attachment)
 
 	return nil
 }
 
 // AddAttachmentFromBuffer adds an attachment already in a byte array to the Data.
-func (d *Data) AddAttachmentFromBuffer(filename string, buffer []byte, inline bool) error {
-	d.Attachments[filename] = &Attachment{
+func (d *Data) AddAttachmentFromBuffer(filename string, buffer []byte, inline bool) {
+	attachment := &Attachment{
 		Filename: filename,
 		Data:     buffer,
 		Inline:   inline,
 	}
-	return nil
+	d.Attachments = append(d.Attachments, attachment)
 }
 
 // AddHeader ads a Header to the Data.
-func (d *Data) AddHeader(key string, value string) Header {
-	newHeader := Header{Key: key, Value: value}
+func (d *Data) AddHeader(key string, value string) *Header {
+	newHeader := &Header{Key: key, Value: value}
 	d.Headers = append(d.Headers, newHeader)
 	return newHeader
 }
