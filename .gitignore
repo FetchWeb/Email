@@ -11,15 +11,6 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# VS Code IDE files and folders
-.vscode
-debug
-debug.test
-
-# Go Modules.
-go.mod
-go.sum
-
 # Test data
-TestEmailCredentials.json
-TestEmailData.json
+TestCredentials.json
+TestData.json
