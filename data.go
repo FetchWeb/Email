@@ -46,7 +46,7 @@ func (d *Data) AddAttachmentFromFile(file string, inline bool) error {
 	// Add file to attachments.
 	attachment := &Attachment{
 		Filename: filename,
-		Data:     data,
+		Data:     string(data),
 		Inline:   inline,
 	}
 	d.Attachments = append(d.Attachments, attachment)
@@ -58,7 +58,7 @@ func (d *Data) AddAttachmentFromFile(file string, inline bool) error {
 func (d *Data) AddAttachmentFromBuffer(filename string, buffer []byte, inline bool) {
 	attachment := &Attachment{
 		Filename: filename,
-		Data:     buffer,
+		Data:     string(buffer),
 		Inline:   inline,
 	}
 	d.Attachments = append(d.Attachments, attachment)
@@ -130,7 +130,7 @@ func (d *Data) ToByteArray() []byte {
 				buf.WriteString("Content-Type: email/rfc822\n")
 				buf.WriteString("Content-Disposition: inline; filename=\"" + attachment.Filename + "\"\n\n")
 
-				buf.Write(attachment.Data)
+				buf.WriteString(attachment.Data)
 			} else {
 				ext := filepath.Ext(attachment.Filename)
 				mimetype := mime.TypeByExtension(ext)
@@ -147,7 +147,7 @@ func (d *Data) ToByteArray() []byte {
 				buf.WriteString("?=\"\n\n")
 
 				b := make([]byte, base64.StdEncoding.EncodedLen(len(attachment.Data)))
-				base64.StdEncoding.Encode(b, attachment.Data)
+				base64.StdEncoding.Encode(b, []byte(attachment.Data))
 
 				for i, l := 0, len(b); i < l; i++ {
 					buf.WriteByte(b[i])
