@@ -11,10 +11,10 @@ import (
 // TestEmail sends test emails based on the JSON files provided.
 func TestEmail(t *testing.T) {
 	creds := &email.Credentials{}
-	data := &email.Data{Attachments: make(map[string]*email.Attachment)}
+	data := &email.Data{}
 
 	// Read test email credentials and unmarshal.
-	dat, err := ioutil.ReadFile("TestCredentials.json")
+	dat, err := ioutil.ReadFile("test-credentials.json")
 	if err != nil {
 		t.Fatalf("Failed to read file %v", err)
 		return
@@ -25,7 +25,7 @@ func TestEmail(t *testing.T) {
 	}
 
 	// Read test email data and unmarshal.
-	dat, err = ioutil.ReadFile("TestData.json")
+	dat, err = ioutil.ReadFile("test-data.json")
 	if err != nil {
 		t.Fatalf("Failed to read file: %v", err)
 		return
@@ -36,28 +36,25 @@ func TestEmail(t *testing.T) {
 	}
 
 	// Add attachments from file.
-	if err := data.AddAttachmentFromFile("TestAttachment_1.txt", false); err != nil {
+	if err := data.AddAttachmentFromFile("test-attachment-1.txt", false); err != nil {
 		t.Fatalf("Failed to add attachment")
 		return
 	}
-	if err := data.AddAttachmentFromFile("TestAttachment_2.png", false); err != nil {
+	if err := data.AddAttachmentFromFile("test-attachment-2.png", false); err != nil {
 		t.Fatalf("Failed to add attachment")
 		return
 	}
 
 	// Add attachments from buffer.
-	dat, err = ioutil.ReadFile("TestAttachment_3.pdf")
+	dat, err = ioutil.ReadFile("test-attachment-3.pdf")
 	if err != nil {
 		t.Fatalf("Failed to read file: %v", err)
 		return
 	}
-	if err := data.AddAttachmentFromBuffer("TestAttachment_3.pdf", dat, false); err != nil {
-		t.Fatalf("Failed to add attachment")
-		return
-	}
+	data.AddAttachmentFromBuffer("test-attachment-3.pdf", dat, false)
 
 	// Read email body template.
-	dat, err = ioutil.ReadFile("TestTemplate.html")
+	dat, err = ioutil.ReadFile("test-template.html")
 	if err != nil {
 		t.Fatalf("Failed to read file: %v", err)
 		return
